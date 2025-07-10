@@ -8,11 +8,13 @@ from ttkthemes import ThemedTk
 
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 items_dir = os.path.join(base_dir, "ITEMS")
+
 def csv_to_nested_list(file_path):
     if not os.path.exists(file_path):
         return [["PARTY NAME", "DATE", "QUANTITY", "PRICE", "VALUE"]]
     with open(file_path, 'r', newline='', encoding='utf-8') as csv_file:
         return list(csv.reader(csv_file))
+    
 def display_table(nested_list):
     table_window = tk.Toplevel(root)
     table_window.title("CURRENT RECORDS")
@@ -30,9 +32,6 @@ def display_table(nested_list):
 
     tree.pack(expand=True, fill=tk.BOTH)
 
-# ----------------------------------------
-# Format records and push to display
-# ----------------------------------------
 def using_data(data):
     nested_list = [["ITEM NAME", "PARTY NAME", "DATE", "QUANTITY", "PRICE", "VALUE"]]
     for i in data:
@@ -52,9 +51,6 @@ def using_data(data):
         nested_list.append(["-" * 40] * 6)
     display_table(nested_list)
 
-# ----------------------------------------
-# Search matching records
-# ----------------------------------------
 def search_records():
     party_name = party_name_entry.get().strip().lower()
     item_name = item_name_entry.get().strip().lower()
@@ -79,14 +75,10 @@ def search_records():
     else:
         messagebox.showinfo("No Records", "No matching records found for the given criteria.")
 
-# ----------------------------------------
-# GUI Setup
-# ----------------------------------------
 root = ThemedTk(theme="black")
 root.title("Search Records")
 root.attributes("-fullscreen", True)
 
-# Labels and inputs
 tk.Label(root, text="Please Enter party name:").pack(pady=10)
 party_name_entry = tk.Entry(root)
 party_name_entry.pack(pady=10)
@@ -95,7 +87,6 @@ tk.Label(root, text="Please Enter item name:").pack(pady=10)
 item_name_entry = tk.Entry(root)
 item_name_entry.pack(pady=10)
 
-# Buttons
 tk.Button(root, text="Search Records", command=search_records).pack(pady=20)
 tk.Button(root, text="Exit", command=root.destroy).pack(pady=20)
 
