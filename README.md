@@ -51,7 +51,7 @@ sales-record-management-system/
 ### 1. Clone the repository
 
 ```bash
-git clone git@github.com:your-username/sales-record-management-system.git
+git clone git@github.com:aadi005/sales-record-management-system.git
 cd sales-record-management-system
 ```
 
